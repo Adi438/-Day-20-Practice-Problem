@@ -1,15 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using MsTestingWithRegularExpression;
 
-namespace day20
+namespace MsTesingWithRegex
 {
-    internal class Program
+    [TestClass]
+    public class UnitTest1
     {
-        static void Main(string[] args)
+        [TestClass]
+        public class UserValidation
         {
+            [TestMethod]
+            //Checking for multiple first name
+            [DataRow("Praful", true)]
+            [DataRow("pr", false)]
+            [DataRow("praful", false)]
+            [DataRow("Pr", false)]
+            [DataRow("Pra", true)]
+            public void GivenFirstNameValidation(string firstName, bool expected) // Testing for Firstname Validation
+            {
+                //Arrange
+                Validation validation = new Validation();
+                //Act
+                bool actual = validation.FirstNameValidation(firstName);
+                //Assert
+                Assert.AreEqual(expected, actual);
+            }
         }
     }
 }
